@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Habits Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="stylesheet" href="../css/global.css" />
+    <script src = "../js/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+      <table class="header-element">
+          <tr>
+            <td width = 50% class="header-td"><a href="../pages/progress.html">Progress</a></td>
+            <td class="header-td"><a href="../pages/planned.html">Planned</a></td>
+          </tr>
+          <tr>
+            <td class="header-td"><a href="../pages/all-habits.html">Habits</a></td>
+            <td class="header-td"><a href="../pages/all-notifications.html">Notifications</a></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="header-td"><a href="../pages/today.html">Today</a></td>
+          </tr>
+        </table>
+      </nav>
+    </header>
+
+    <main>
+      <button class="add-hab-button" onclick="toNewHabit();">Add habit</button>
+      <button class="add-not-button" onclick="toNewNotification();">Add notification</button>
+      <h1 id='test'class="chapter-name">Today</h1>
+
+      <table id='today-habs'class="general-habs">
+        <tr>
+          <th class="general-th">Complete</th>
+          <th class="general-th">Habit</th>
+          <th class="general-th">Frequency</th>
+          <th class="general-th">Notes</th>
+        </tr>
+        <!-- <tr>          
+            <td class="general-td"><input type="radio" /></td>
+            <td class="general-td"></td>
+            <td class="general-td"></td>
+            <td class="general-td"></td>
+        </tr> -->
+      </table>
+
+      <script src = "../js/script.js"></script>
+    </main>
+  </body>
+</html>

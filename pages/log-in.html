@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/global.css"/>
+        <!-- <script src="https://unpkg.com/@supabase/supabase-js"></script>
+        <script src="../js/script.js" defer></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script src="../js/app.js"></script>
+    </head>
+    <body>
+        <section>
+            <!-- <section id="whenSignedIn" hidden="true">
+                <div id="userDetails"></div>
+                <button id="signOutBtn" class="btn btn-primary">Sign Out</button>
+            </section> -->
+            <div class="start-div">
+                <p class="start-p">To log in, fill in the fields:</p>              
+                <form class="start-form">
+                    <input id ='log-email' placeholder="Your email" type='email' required>
+                    <input id ='log-password' placeholder="Your password" type='password' required>
+                    
+                </form>
+                <button class = "log-sign-in-btn" onclick="logIn();/*toToday();handleSubmit(event)*/">
+                    Log in
+                </button>
+                <p id="without-account"></p>
+                <p class="already-account-txt" onclick="toSignIn();">Don&apos;t have an account? Create it!</p>
+            </div>
+        </section>
+        <script src="../js/script.js"></script>
+    </body>
+</html>

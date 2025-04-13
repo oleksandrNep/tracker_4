@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/global.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script src="../js/app.js"></script>
+    </head>
+    <body>
+        <section>
+            <div class="start-div">
+                <p class="start-p">To sign in, fill in the fields:</p>              
+                <form class="start-form">
+                    <input id ='sign-email' placeholder="Your email" type='email' required>
+                    <input id ='sign-password' placeholder="Your password" type='password' required>
+                </form>
+                <button class = "log-sign-in-btn" onclick="addUser();" >
+                    Sign in
+                </button>
+                <p id="without-account"></p>
+                <p class="already-account-txt" onclick="toLogIn();">Already have an account? Log in!</p>
+            </div>
+        </section>
+        <script src="../js/script.js"></script>
+    </body>
+</html>

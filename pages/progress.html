@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Habits Tracker</title>
+    <link rel="stylesheet" href="../css/progress.css" />
+</head>
+  <body>
+    <header>
+      <nav>
+      <table class="header-element">
+          <tr>
+            <td width = 50% class="header-td"><a href="../pages/progress.html">Progress</a></td>
+            <td class="header-td"><a href="../pages/planned.html">Planned</a></td>
+          </tr>
+          <tr>
+            <td class="header-td"><a href="../pages/all-habits.html">Habits</a></td>
+            <td class="header-td"><a href="../pages/all-notifications.html">Notifications</a></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="header-td"><a href="../pages/today.html">Today</a></td>
+          </tr>
+        </table>
+      </nav>
+    </header>
+
+    <main>
+      <button class="add-hab-button" onclick="toNewHabit();">Add habit</button>
+      <button class="add-not-button" onclick="toNewNotification();">Add notification</button>
+      <h1 class="chapter-name">Progress</h1>
+      <h2>Last week</h2>
+    <!-- <img src = "../images/motivation.jpg"> -->
+    <!-- <br>
+    <br> -->
+    <table id="progress-table" border="1">
+      <tr>
+        <td><b>Habit name</b></td>
+        <th>26.02.25</th>
+        <th>27.02.25</th>
+        <th>28.02.25</th>
+        <th>29.02.25</th>
+        <th>01.03.25</th>
+        <th>02.03.25</th>
+        <th>03.03.25</th>
+        <th>04.03.25</th>
+      </tr>
+      <tr>
+        <td>Sleep time</td>
+        <td>10 pm</td>
+        <td>1 am</td>
+        <td>11 pm</td>
+        <td>11:30 pm</td>
+        <td>10:45 pm</td>
+        <td>12 am</td>
+        <td>10:15 pm</td>
+        <td>11 pm</td>
+      </tr>
+      <tr>
+        <td>Wake up time</td>
+        <td>6 am</td>
+        <td>8 am</td>
+        <td>7 am</td>
+        <td>6:30 am</td>
+        <td>7:15 am</td>
+        <td>8 am</td>
+        <td>6:45 am</td>
+        <td>7 am</td>
+      </tr>
+      <tr>
+        <td>Exercise</td>
+        <td>✅</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
+        <td>✅</td>
+        <td>✅</td>
+        <td>❌</td>
+      </tr>
+      <tr>
+        <td>Read a book</td>
+        <td>20 min</td>
+        <td>30 min</td>
+        <td>25 min</td>
+        <td>15 min</td>
+        <td>40 min</td>
+        <td>10 min</td>
+        <td>35 min</td>
+        <td>20 min</td>
+      </tr>
+      <tr>
+        <td>Drink water (liters)</td>
+        <td>2L</td>
+        <td>1.5L</td>
+        <td>2L</td>
+        <td>2.5L</td>
+        <td>1.8L</td>
+        <td>2L</td>
+        <td>2.2L</td>
+        <td>1.9L</td>
+      </tr>
+      <tr>
+        <td>Meditation</td>
+        <td>10 min</td>
+        <td>15 min</td>
+        <td>5 min</td>
+        <td>10 min</td>
+        <td>20 min</td>
+        <td>10 min</td>
+        <td>15 min</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td>Screen time (hrs)</td>
+        <td>4h</td>
+        <td>5h</td>
+        <td>3.5h</td>
+        <td>4h</td>
+        <td>6h</td>
+        <td>3h</td>
+        <td>4.5h</td>
+        <td>5h</td>
+      </tr>
+    </table>   
+    
+    <h2>Last month</h2>
+    
+    <table class="progress-table" border="1">
+      <tr>
+        <td><b>Habit name</b></td>
+        <th>Last 4 Weeks (Avg)</th>
+      </tr>
+      <tr>
+        <td>Sleep time</td>
+        <td>11:15 pm</td>
+      </tr>
+      <tr>
+        <td>Wake up time</td>
+        <td>7:00 am</td>
+      </tr>
+      <tr>
+        <td>Exercise (days per week)</td>
+        <td>4 days</td>
+      </tr>
+      <tr>
+        <td>Read a book</td>
+        <td>25 min/day</td>
+      </tr>
+      <tr>
+        <td>Drink water</td>
+        <td>2.1L/day</td>
+      </tr>
+      <tr>
+        <td>Meditation</td>
+        <td>12 min/day</td>
+      </tr>
+      <tr>
+        <td>Screen time</td>
+        <td>4.5h/day</td>
+      </tr>
+    </table>
+
+    <h2>Last year</h2>
+
+    <table class="progress-table" border="1">
+      <tr>
+        <td><b>Habit name</b></td>
+        <th>Monthly Avg</th>
+        <th>Dec 2024</th>
+        <th>Jan 2025</th>
+      </tr>
+      <tr>
+        <td>Sleep time</td>
+        <td>-</td>
+        <td>11:30 pm</td>
+        <td>11 pm</td>
+      </tr>
+      <tr>
+        <td>Wake up time</td>
+        <td>-</td>
+        <td>7:15 am</td>
+        <td>6:45 am</td>
+      </tr>
+      <tr>
+        <td>Exercise (days per week)</td>
+        <td>-</td>
+        <td>3 days</td>
+        <td>5 days</td>
+      </tr>
+      <tr>
+        <td>Read a book</td>
+        <td>-</td>
+        <td>20 min/day</td>
+        <td>30 min/day</td>
+      </tr>
+      <tr>
+        <td>Drink water</td>
+        <td>-</td>
+        <td>2L/day</td>
+        <td>2.3L/day</td>
+      </tr>
+      <tr>
+        <td>Meditation</td>
+        <td>-</td>
+        <td>10 min/day</td>
+        <td>15 min/day</td>
+      </tr>
+      <tr>
+        <td>Screen time</td>
+        <td>-</td>
+        <td>4h/day</td>
+        <td>5h/day</td>
+      </tr>
+    </table>
+    
+    
+
+    <script src="../js/script.js"></script>
+    </main>
+  </body>
+</html>
