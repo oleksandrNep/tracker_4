@@ -52,11 +52,13 @@ async function insertHabits() {
   <th class="general-th">Name of notification</th>
   <th class="general-th">First notification</th>
   <th class="general-th">Frequency</th>
+  <th class="general-th">Notes</th>
 </tr>`;
   
   habits.forEach(habit => {
     document.getElementById('general-habs').innerHTML+=`<tr>
         <td class="general-td">${habit.habit}</td>
+        <td class="general-td">${formatDate(habit.first_date)}</td>
         <td class="general-td">${habit.frequency}</td>
         <td class="general-td">${habit.notes}</td>
       </tr>`
@@ -104,8 +106,8 @@ function formatDate(dateString) {
 
 async function today() {
   const todayDate = new Date();
-  todayDate.setUTCHours(0, 0, 0, 0); // Normalize to midnight UTC
-  const isoDate = todayDate.toISOString(); // "2025-04-14T00:00:00.000Z"
+  todayDate.setUTCHours(0, 0, 0, 0);
+  const isoDate = todayDate.toISOString(); // 2025-04-14T00:00:00.000Z
 
   let { data: todayHabits, error } = await client
   .from('habits')
@@ -124,6 +126,8 @@ async function today() {
     return;
   }
 
+  let id = -1;
+
   document.getElementById('today-habs').innerHTML = `<tr>
           <th class="general-th">Complete</th>
           <th class="general-th">Habit</th>
@@ -134,7 +138,7 @@ async function today() {
   
   todayHabits.forEach(todayHabit => {
     document.getElementById('today-habs').innerHTML+=`<tr>
-        <td class="general-td"><input type="radio" /></td>
+        <td class="general-td"><input type="radio" id='${++id}'/></td>
         <td class="general-td">${todayHabit.habit}</td>
         <td class="general-td">${formatDate(todayHabit.first_date)}</td>
         <td class="general-td">${todayHabit.frequency}</td>
@@ -143,8 +147,16 @@ async function today() {
   });
 }
 
+function radioInitialization() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      console.log(`Radio ${radio.id} selected`);
+    });
+  });
+}
+
 async function addHabit() {
-  
   // console.log('addHabit');
   let name = document.getElementById('name').value;
   let frequency = document.getElementById('frequency').value;
@@ -162,6 +174,7 @@ async function addHabit() {
 }
 
 //Log in and sign up system
+
 async function addUser() {
   if (!document.getElementById('sign-email').value || !document.getElementById('sign-password').value){
       console.log('empty input');
@@ -215,6 +228,7 @@ async function logIn() {
 }
 
 // Notifications
+
 async function addNotification() {
   // console.log('addHabit');
   let notName = document.getElementById('notName').value;
@@ -259,7 +273,7 @@ document.getElementById('all-notifications').innerHTML = `<tr>
 notifications.forEach(notification => {
   document.getElementById('all-notifications').innerHTML+=`<tr>
       <td class="general-td">${notification.name}</td>
-      <td class="general-td">${notification.first_notification_date}</td>
+      <td class="general-td">${formatDate(notification.first_notification_date)}</td>
       <td class="general-td">${notification.frequency}</td>
     </tr>`
 });
@@ -269,6 +283,7 @@ function initializeProject(){
   today();
   insertHabits();
   insertNotifications();
+  radioInitialization();
 }
 
 initializeProject();

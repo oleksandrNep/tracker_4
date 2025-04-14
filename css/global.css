@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   color: whitesmoke;
   background-color: #2E3944;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -17,10 +18,12 @@ h2{
 
 html{
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body{
   min-height: 70vh;
+  overflow-x: hidden;
 }
 
 button{
@@ -66,8 +69,9 @@ h1{
 }
 
 main {
+  max-width: 100%;
   background-color: #141414;
-  min-height: 80vh;
+  min-height: 120vh;
   padding-top: 17vh;
   margin: 0;
   border-top: none;
@@ -102,7 +106,7 @@ main {
 
 .general-habs{
   background-color: #141414;
-  width: 100vw;
+  width: 100%;
   text-align: center;
   /* border-collapse: collapse; */
   border: none;
