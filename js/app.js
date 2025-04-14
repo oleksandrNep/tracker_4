@@ -90,11 +90,29 @@ async function insertHabits() {
 //   cells[3].textContent = firstHabit.notes || '';
 // }
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+}
+
 async function today() {
+  const todayDate = new Date();
+  todayDate.setUTCHours(0, 0, 0, 0); // Normalize to midnight UTC
+  const isoDate = todayDate.toISOString(); // "2025-04-14T00:00:00.000Z"
+
   let { data: todayHabits, error } = await client
   .from('habits')
   .select("*")
-  .lte('frequency', new Date().toISOString());
+  // .lte('frequency', new Date().toISOString());
+  // .lte('first_date', '2025-04-14T00:00:00Z');
+  .lte('first_date', isoDate);
 
   if (error) {
     console.error('error', error.message);
@@ -109,6 +127,7 @@ async function today() {
   document.getElementById('today-habs').innerHTML = `<tr>
           <th class="general-th">Complete</th>
           <th class="general-th">Habit</th>
+          <th class="general-th">First notification</th>
           <th class="general-th">Frequency</th>
           <th class="general-th">Notes</th>
         </tr>`;
@@ -117,7 +136,8 @@ async function today() {
     document.getElementById('today-habs').innerHTML+=`<tr>
         <td class="general-td"><input type="radio" /></td>
         <td class="general-td">${todayHabit.habit}</td>
-        <td class="general-td">${todayHabit.first_date}</td>
+        <td class="general-td">${formatDate(todayHabit.first_date)}</td>
+        <td class="general-td">${todayHabit.frequency}</td>
         <td class="general-td">${todayHabit.notes}</td>
       </tr>`
   });
