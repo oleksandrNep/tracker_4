@@ -163,7 +163,7 @@ async function today() {
   .select("*")
   // .lte('frequency', new Date().toISOString());
   // .lte('first_date', '2025-04-14T00:00:00Z');
-  .lte('first_date', isoDate);
+  .lte('next_date', isoDate);
 
   if (error) {
     console.error('error', error.message);
@@ -202,11 +202,11 @@ async function addHabit() {
   let frequency = document.getElementById('frequency').value;
   let notes = document.getElementById('notes').value;
   const { data, error } = await client
-.from('habits')
-.insert([
-  { habit: name, first_date: frequency, notes: notes },
-])
-.select()
+  .from('habits')
+  .insert([
+    { habit: name, first_date: frequency, notes: notes },
+  ])
+  .select()
 
   document.getElementById('name').value='';
   document.getElementById('frequency').value='';
