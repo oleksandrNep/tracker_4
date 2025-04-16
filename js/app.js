@@ -32,6 +32,24 @@ const client = supabase.createClient(supabaseUrl, supabaseKey);
 // }
 
 // Habits
+
+async function deleteHabits(habitName){
+  // console.log("delete");
+  // console.log(habitName);
+  
+  const { error } = await client
+  .from('habits')
+  .delete()
+  .eq('habit', habitName)
+
+  if (error) {
+    console.error("Supabase error:", error.message);
+  } else {
+    // console.log("Successfully deleted");
+    await insertHabits();
+  }
+}
+
 async function insertHabits() {
   const { data: habits, error } = await client
     .from('habits')
@@ -53,6 +71,7 @@ async function insertHabits() {
   <th class="general-th">First notification</th>
   <th class="general-th">Frequency</th>
   <th class="general-th">Notes</th>
+  <th class="general-th">Delete</th>
 </tr>`;
   
   habits.forEach(habit => {
@@ -61,6 +80,7 @@ async function insertHabits() {
         <td class="general-td">${formatDate(habit.first_date)}</td>
         <td class="general-td">${habit.frequency}</td>
         <td class="general-td">${habit.notes}</td>
+        <td class="general-td"><button onclick="deleteHabits('${habit.habit}');">Delete</button></td>
       </tr>`
   });
 }
@@ -247,36 +267,55 @@ async function addNotification() {
   document.getElementById('notFrequency').value='';
 }
 
+async function deleteNotifications(notificationName){
+  // console.log("delete");
+  // console.log(notificationName);
+  
+  const { error } = await client
+  .from('notifications')
+  .delete()
+  .eq('name', notificationName)
+
+  if (error) {
+    console.error("Supabase error:", error.message);
+  } else {
+    // console.log("Successfully deleted");
+    await insertNotifications();
+  }
+}
+
 async function insertNotifications() {
-let { data: notifications, error } = await client
-.from('notifications')
-.select('*')
+  let { data: notifications, error } = await client
+  .from('notifications')
+  .select('*')
 
-if (error) {
-  console.error('error', error.message);
-  return;
-}
+  if (error) {
+    console.error('error', error.message);
+    return;
+  }
 
-if (!notifications || notifications.length === 0) {
-  console.warn('No notifications found in the database.');
-  return;
-}
+  if (!notifications || notifications.length === 0) {
+    console.warn('No notifications found in the database.');
+    return;
+  }
 
-document.getElementById('all-notifications').innerHTML = `<tr>
-      <th class="general-th">Name of notification</th>
-      <th class="general-th">First notification</th>
-      <th class="general-th">Frequency</th>
-    </tr>`;
+  document.getElementById('all-notifications').innerHTML = `<tr>
+        <th class="general-th">Name of notification</th>
+        <th class="general-th">First notification</th>
+        <th class="general-th">Frequency</th>
+        <th class="general-th">Delete</th>
+      </tr>`;
 
-// let table = ``;
+  // let table = ``;
 
-notifications.forEach(notification => {
-  document.getElementById('all-notifications').innerHTML+=`<tr>
-      <td class="general-td">${notification.name}</td>
-      <td class="general-td">${formatDate(notification.first_notification_date)}</td>
-      <td class="general-td">${notification.frequency}</td>
-    </tr>`
-});
+  notifications.forEach(notification => {
+    document.getElementById('all-notifications').innerHTML+=`<tr>
+        <td class="general-td">${notification.name}</td>
+        <td class="general-td">${formatDate(notification.first_notification_date)}</td>
+        <td class="general-td">${notification.frequency}</td>
+        <td class="general-td"><button onclick="deleteNotifications('${notification.name}');">Delete</button></td>
+      </tr>`
+  });
 }
 
 function initializeProject(){
