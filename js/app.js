@@ -68,19 +68,21 @@ async function insertHabits() {
 
   document.getElementById('general-habs').innerHTML = `<tr>
   <th class="general-th">Name of notification</th>
-  <th class="general-th">First notification</th>
+  <th class="general-th">First date</th>
+  <th class="general-th">Next date</th>
   <th class="general-th">Frequency</th>
   <th class="general-th">Notes</th>
   <th class="general-th">Delete</th>
-</tr>`;
+  </tr>`;
   
   habits.forEach(habit => {
     document.getElementById('general-habs').innerHTML+=`<tr>
         <td class="general-td">${habit.habit}</td>
         <td class="general-td">${formatDate(habit.first_date)}</td>
+        <td class="general-td">${formatDate(habit.next_date)}</td>
         <td class="general-td">${habit.frequency}</td>
         <td class="general-td">${habit.notes}</td>
-        <td class="general-td"><button onclick="deleteHabits('${habit.habit}');">Delete</button></td>
+        <td class="general-td"><button class="removeButton" onclick="deleteHabits('${habit.habit}');">Delete</button></td>
       </tr>`
   });
 }
@@ -151,16 +153,16 @@ async function today() {
   document.getElementById('today-habs').innerHTML = `<tr>
           <th class="general-th">Complete</th>
           <th class="general-th">Habit</th>
-          <th class="general-th">First notification</th>
+          <th class="general-th">Date</th>
           <th class="general-th">Frequency</th>
           <th class="general-th">Notes</th>
         </tr>`;
   
   todayHabits.forEach(todayHabit => {
     document.getElementById('today-habs').innerHTML+=`<tr>
-        <td class="general-td"><input type="radio" id='${++id}'/></td>
+        <td class="general-td"><button class="removeButton" id='${++id}' onclick=''/>Complete</td>
         <td class="general-td">${todayHabit.habit}</td>
-        <td class="general-td">${formatDate(todayHabit.first_date)}</td>
+        <td class="general-td">${formatDate(todayHabit.next_date)}</td>
         <td class="general-td">${todayHabit.frequency}</td>
         <td class="general-td">${todayHabit.notes}</td>
       </tr>`
@@ -313,7 +315,7 @@ async function insertNotifications() {
         <td class="general-td">${notification.name}</td>
         <td class="general-td">${formatDate(notification.first_notification_date)}</td>
         <td class="general-td">${notification.frequency}</td>
-        <td class="general-td"><button onclick="deleteNotifications('${notification.name}');">Delete</button></td>
+        <td class="general-td"><button class="removeButton" onclick="deleteNotifications('${notification.name}');">Delete</button></td>
       </tr>`
   });
 }
