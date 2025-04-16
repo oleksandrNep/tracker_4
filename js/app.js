@@ -126,8 +126,31 @@ function formatDate(dateString) {
   });
 }
 
-function habitIsComplete(date, frequency) {
-  console.log(habitName);
+// function habitIsComplete(date, frequency) {
+  
+// }
+
+async function habitIsComplete(name, nextDate, frequency) { 
+  const dateObj = new Date(nextDate);
+  const hoursToAdd = parseFloat(frequency);
+  dateObj.setHours(dateObj.getHours() + hoursToAdd);
+  // let newDateObj = dateObj;
+  let newDateISO = dateObj.toISOString();
+
+  // console.log("New Date Object:", newDateObj);
+  console.log("New ISO Date:", newDateISO);
+
+  const { error } = await client
+  .from('habits')
+  .update({ next_date: newDateISO })
+   .eq('habit', name)
+
+  if (error) {
+    console.error("Supabase error:", error.message);
+  } else {
+    // console.log("Successfully deleted");
+    await today();
+  }
 }
 
 async function today() {
@@ -164,7 +187,7 @@ async function today() {
   
   todayHabits.forEach(todayHabit => {
     document.getElementById('today-habs').innerHTML+=`<tr>
-        <td class="general-td"><button class="removeButton" id='${++id}' onclick='habitIsComplete("${todayHabit.next_date}","${todayHabit.frequency}")'/>Complete</td>
+        <td class="general-td"><button class="removeButton" id='${++id}' onclick='habitIsComplete("${todayHabit.habit}","${todayHabit.next_date}","${todayHabit.frequency}")'/>Complete</td>
         <td class="general-td">${todayHabit.habit}</td>
         <td class="general-td">${formatDate(todayHabit.next_date)}</td>
         <td class="general-td">${todayHabit.frequency}</td>
