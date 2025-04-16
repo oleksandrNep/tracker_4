@@ -153,6 +153,48 @@ async function habitIsComplete(name, nextDate, frequency) {
   }
 }
 
+async function planned() {
+  const todayDate = new Date();
+  todayDate.setUTCHours(0, 0, 0, 0);
+  const isoDate = todayDate.toISOString(); // 2025-04-14T00:00:00.000Z
+
+  let { data: plannedHabits, error } = await client
+  .from('habits')
+  .select("*")
+  // .lte('frequency', new Date().toISOString());
+  // .lte('first_date', '2025-04-14T00:00:00Z');
+  .gt('first_date', isoDate);
+
+  if (error) {
+    console.error('error', error.message);
+    return;
+  }
+
+  if (!plannedHabits || plannedHabits.length === 0) {
+    console.warn('No habits found in the database.');
+    return;
+  }
+
+  let id = -1;
+
+  document.getElementById('planned-habs').innerHTML = `<tr>
+          <th class="general-th">Habit</th>
+          <th class="general-th">Date</th>
+          <th class="general-th">Frequency</th>
+          <th class="general-th">Notes</th>
+        </tr>`;
+  
+  plannedHabits.forEach(plannedHabit => {
+    document.getElementById('planned-habs').innerHTML+=`<tr>
+        <td class="general-td">${plannedHabit.habit}</td>
+        <td class="general-td">${formatDate(plannedHabit.next_date)}</td>
+        <td class="general-td">${plannedHabit.frequency}</td>
+        <td class="general-td">${plannedHabit.notes}</td>
+        <td class="general-td"><button class="removeButton" id='${++id}' onclick='deleteHabits("${plannedHabit.habit}")'/>Delete</td>
+      </tr>`
+  });
+}
+
 async function today() {
   const todayDate = new Date();
   todayDate.setUTCHours(0, 0, 0, 0);
@@ -341,6 +383,7 @@ async function insertNotifications() {
 function initializeProject(){
   today();
   insertHabits();
+  planned();
   insertNotifications();
   radioInitialization();
 }
