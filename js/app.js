@@ -126,6 +126,10 @@ function formatDate(dateString) {
   });
 }
 
+function habitIsComplete(date, frequency) {
+  console.log(habitName);
+}
+
 async function today() {
   const todayDate = new Date();
   todayDate.setUTCHours(0, 0, 0, 0);
@@ -160,21 +164,12 @@ async function today() {
   
   todayHabits.forEach(todayHabit => {
     document.getElementById('today-habs').innerHTML+=`<tr>
-        <td class="general-td"><button class="removeButton" id='${++id}' onclick=''/>Complete</td>
+        <td class="general-td"><button class="removeButton" id='${++id}' onclick='habitIsComplete("${todayHabit.next_date}","${todayHabit.frequency}")'/>Complete</td>
         <td class="general-td">${todayHabit.habit}</td>
         <td class="general-td">${formatDate(todayHabit.next_date)}</td>
         <td class="general-td">${todayHabit.frequency}</td>
         <td class="general-td">${todayHabit.notes}</td>
       </tr>`
-  });
-}
-
-function radioInitialization() {
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-    radio.addEventListener('change', () => {
-      console.log(`Radio ${radio.id} selected`);
-    });
   });
 }
 
