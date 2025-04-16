@@ -66,7 +66,8 @@ async function insertHabits() {
     return;
   }
 
-  document.getElementById('general-habs').innerHTML = `<tr>
+  document.getElementById('general-habs').innerHTML = `
+  <tr>
   <th class="general-th">Name of notification</th>
   <th class="general-th">First date</th>
   <th class="general-th">Next date</th>
@@ -177,9 +178,10 @@ async function planned() {
 
   let id = -1;
 
-  document.getElementById('planned-habs').innerHTML = `<tr>
+  document.getElementById('planned-habs').innerHTML =
+   `<tr>
           <th class="general-th">Habit</th>
-          <th class="general-th">Date</th>
+          <th class="general-th">First date</th>
           <th class="general-th">Frequency</th>
           <th class="general-th">Notes</th>
         </tr>`;
@@ -187,7 +189,7 @@ async function planned() {
   plannedHabits.forEach(plannedHabit => {
     document.getElementById('planned-habs').innerHTML+=`<tr>
         <td class="general-td">${plannedHabit.habit}</td>
-        <td class="general-td">${formatDate(plannedHabit.next_date)}</td>
+        <td class="general-td">${formatDate(plannedHabit.first_date)}</td>
         <td class="general-td">${plannedHabit.frequency}</td>
         <td class="general-td">${plannedHabit.notes}</td>
         <td class="general-td"><button class="removeButton" id='${++id}' onclick='deleteHabits("${plannedHabit.habit}")'/>Delete</td>
@@ -219,7 +221,7 @@ async function today() {
 
   let id = -1;
 
-  document.getElementById('today-habs').innerHTML = `<tr>
+  document.getElementById('today-habs').innerHTML =`<tr>
           <th class="general-th">Complete</th>
           <th class="general-th">Habit</th>
           <th class="general-th">Date</th>
@@ -246,7 +248,7 @@ async function addHabit() {
   const { data, error } = await client
   .from('habits')
   .insert([
-    { habit: name, first_date: frequency, notes: notes },
+    { habit: name, first_date: frequency, next_date: frequency, notes: notes },
   ])
   .select()
 
@@ -385,7 +387,6 @@ function initializeProject(){
   insertHabits();
   planned();
   insertNotifications();
-  radioInitialization();
 }
-
-initializeProject();
+document.addEventListener("DOMContentLoaded",
+initializeProject());
