@@ -243,16 +243,22 @@ async function today() {
 async function addHabit() {
   // console.log('addHabit');
   let name = document.getElementById('name').value;
+  let first_date = document.getElementById('first_date').value;
   let frequency = document.getElementById('frequency').value;
   let notes = document.getElementById('notes').value;
+  
+  let parsedDate = new Date(first_date); // parses in local time
+  let isoDateUTC = parsedDate.toISOString(); // converts to UTC
+  
   const { data, error } = await client
   .from('habits')
   .insert([
-    { habit: name, first_date: frequency, next_date: frequency, notes: notes },
+    { habit: name, first_date: isoDateUTC, next_date: isoDateUTC, frequency: frequency, notes: notes },
   ])
   .select()
 
   document.getElementById('name').value='';
+  document.getElementById('first_date').value='';
   document.getElementById('frequency').value='';
   document.getElementById('notes').value='';
 }
@@ -319,10 +325,14 @@ async function addNotification() {
   let firstNotificationDate = document.getElementById('firstNotificationDate').value;
   let notFrequency = document.getElementById('notFrequency').value;
   // console.log(notName, firstNotificationDate, notFrequency);
+
+  let parsedDate = new Date(firstNotificationDate); // parses in local time
+  let isoDateUTC = parsedDate.toISOString(); // converts to UTC
+
   const { data, error } = await client
   .from('notifications')
   .insert([
-    { name: notName, first_notification_date: firstNotificationDate, frequency: notFrequency },
+    { name: notName, first_notification_date: isoDateUTC, frequency: notFrequency },
   ])
   .select()
 
