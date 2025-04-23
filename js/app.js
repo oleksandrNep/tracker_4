@@ -127,10 +127,6 @@ function formatDate(dateString) {
   });
 }
 
-// function habitIsComplete(date, frequency) {
-  
-// }
-
 async function habitIsComplete(name, nextDate, frequency) { 
   const dateObj = new Date(nextDate);
   const hoursToAdd = parseFloat(frequency);
@@ -149,7 +145,7 @@ async function habitIsComplete(name, nextDate, frequency) {
   if (error) {
     console.error("Supabase error:", error.message);
   } else {
-    // console.log("Successfully deleted");
+    // console.log("deleted");
     await today();
   }
 }
@@ -392,11 +388,30 @@ async function insertNotifications() {
   });
 }
 
+// function enterButton(){
+//   // var pass = document.getElementById("log-password");
+//   // pass.addEventListener("keypress", function(event) {
+//   // if (event.key === "Enter") {
+//   //   event.preventDefault();
+//   //   document.getElementById("log-password-btn").click();
+//   // }
+//   // });
+// }
+
+// var input = document.getElementById("myInput");
+// input.addEventListener("keypress", function(event) {
+//   if (event.key === "Enter") {
+//     event.preventDefault();
+//     document.getElementById("myBtn").click();
+//   }
+// });
+
 function initializeProject(){
   today();
   insertHabits();
   planned();
   insertNotifications();
+  // enterButton();
 }
 document.addEventListener("DOMContentLoaded",
-initializeProject());
+initializeProject);

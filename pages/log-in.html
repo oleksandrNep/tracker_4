@@ -20,13 +20,22 @@
                     <input id ='log-password' placeholder="Your password" type='password' required>
                     
                 </form>
-                <button class = "log-sign-in-btn" onclick="logIn();/*toToday();handleSubmit(event)*/">
+                <button class = "log-sign-in-btn" id="log-password-btn" onclick="logIn();/*toToday();handleSubmit(event)*/">
                     Log in
                 </button>
                 <p id="without-account"></p>
                 <p class="already-account-txt" onclick="toSignIn();">Don&apos;t have an account? Create it!</p>
             </div>
         </section>
+        <script>
+            var pass = document.getElementById("log-password");
+            pass.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("log-password-btn").click();
+            }
+            });
+        </script>
         <script src="../js/script.js"></script>
     </body>
 </html>

@@ -26,18 +26,14 @@ function toToday (){
   window.location.href = "../pages/today.html";
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+// function handleSubmit(event) {
+//   event.preventDefault();
+//   const email = document.getElementById('email').value;
+//   const password = document.getElementById('password').value;
 
-  if (email === "user" && password === "user") {
-      window.location.href = "pages/templete.html";
-  } else {
-      alert("Неправильний логін або пароль.");
-  }
-}
-
-function done(){
-  
-}
+//   if (email === "user" && password === "user") {
+//       window.location.href = "pages/templete.html";
+//   } else {
+//       alert("Неправильний логін або пароль.");
+//   }
+// }

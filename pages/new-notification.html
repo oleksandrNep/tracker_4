@@ -42,7 +42,17 @@
       </tr>
     </table>
 
-    <button class="save-not-hab-btn" onclick="addNotification();">Save new notification</button>
+    <button class="save-not-hab-btn" id="save-btn" onclick="addNotification();">Save new notification</button>
+    <script>
+      var freq = document.getElementById('notFrequency');
+      freq.addEventListener("keypress", function(event){
+        if (event.key ==="Enter"){
+          event.preventDefault();
+          console.log('enter');
+          addNotification();
+        }
+      })
+    </script>
     <script src = "../js/script.js"></script>
   </main>
   </body>
