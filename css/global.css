@@ -24,6 +24,7 @@ html{
 body{
   min-height: 70vh;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 button{
@@ -73,6 +74,7 @@ main {
   background-color: #141414;
   min-height: 120vh;
   padding-top: 17vh;
+  /* padding-top: 6rem; */
   margin: 0;
   border-top: none;
 }
@@ -163,6 +165,15 @@ input, .new-input{
   margin: 1rem auto;
   border: 1px solid #124E66;
   width: 20rem;
+  height: 5vh;
+  display: block;
+}
+
+#name, #first_date, #frequency, #notes{
+  margin: 1rem auto;
+  border: 1px solid #124E66;
+  /* width: 15rem; */
+  width: 15vw;
   height: 5vh;
   display: block;
 }
@@ -287,5 +298,11 @@ form{
   }
   .new-input{
     width: 5rem;
+  }
+}
+
+@media (max-height: 600px){
+  main{
+    padding-top: 5rem;
   }
 }

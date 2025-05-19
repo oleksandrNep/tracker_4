@@ -48,21 +48,7 @@
         <input id='frequency' class="new-input" type="text" placeholder="Frequency (24h, 48h, etc.)" required>
         <input id='notes' class="new-input" type="text" placeholder="Notes for the new habit"> -->
       </form>
-      <button class="save-not-hab-btn" id="save-btn" onclick="addHabit();">Save new habit</button>
-      <script>
-        document.getElementById('frequency').addEventListener("keypress", function(event){
-          if (event.key === "Enter"){
-            event.preventDefault;
-            addHabit();
-          }
-        })
-        document.getElementById('notes').addEventListener("keypress", function (event){
-          if (event.key === "Enter"){
-            event.preventDefault;
-            document.getElementById('save-btn').click();
-          }
-        })
-      </script>
+      <button class="save-not-hab-btn" onclick="addHabit();">Save new habit</button>
       <script src = "../js/script.js"></script>
   </main>
   </body>
